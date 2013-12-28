@@ -1,0 +1,17 @@
+[
+	{
+		"id": "premium",
+		"name": "premium",
+		"bio": "Very special clients"
+	},
+	{
+		"id": "regular",
+		"name": "regular",
+		"bio": "Regular clients"
+	},
+	{
+		"id": "casual",
+		"name": "casual",
+		"bio": "Eventual clients"
+	}
+]
