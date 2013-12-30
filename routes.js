@@ -2,10 +2,11 @@ module.exports = function(app, passport){
 	/**
 	 * Controllers.
 	 */
-	var restaurants = require('./restaurant/restaurant-controller');
+	var restaurants = require('./controllers/restaurant-controller');
 
 	/**
 	 * Restaurants routes.
 	 */
-	app.get('/api/pvt/restaurants', restaurants.findAll);
+	app.get('/api/pvt/restaurants', restaurants.getAllRestaurants);
+	app.post('/api/pvt/restaurants', restaurants.newRestaurant);
 };

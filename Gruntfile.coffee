@@ -9,7 +9,7 @@ module.exports = (grunt) ->
 				options:
 					file: 'app.js'
 					ignoredFiles: ['node_modules/**', '.idea/**', '.git/**']
-					watchedFolders: ['restaurant']
+					watchedFolders: ['controllers', 'models']
 					debug: true
 					delayTime: 1
 

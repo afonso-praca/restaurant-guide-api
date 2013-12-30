@@ -2,8 +2,6 @@
  * App dependencies.
  */
 var express = require('express');
-var _ = require('underscore');
-var path = require('path');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
@@ -23,12 +21,12 @@ app.use(passport.session());
 /**
  * Start DB.
  */
-var db = mongoose.connect('mongodb://localhost/restaurant-guide');
+var db = mongoose.connect('mongodb://localhost/controllers-guide');
 
 // Bootstrap models and routes
+require("./models/restaurant-model");
 require('./routes')(app, passport);
 
 app.listen(3000, function(){
 	console.log("running on 3000!");
-	console.log(passport);
 });
