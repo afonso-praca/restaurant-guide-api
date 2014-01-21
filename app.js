@@ -21,7 +21,7 @@ app.use(passport.session());
 /**
  * Start DB.
  */
-var db = mongoose.connect('mongodb://localhost/controllers-guide');
+var db = mongoose.connect('mongodb://localhost/restaurant-guide');
 
 // Bootstrap models and routes
 require("./models/restaurant-model");

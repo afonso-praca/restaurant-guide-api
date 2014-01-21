@@ -7,6 +7,7 @@ var Restaurant = mongoose.model("Restaurant");
 exports.getAllRestaurants = function(req, res){
 	return Restaurant.find(function (err, restaurants){
 		if (!err) {
+			res.header('Access-Control-Allow-Origin', "*");
 			return res.jsonp(restaurants);
 		} else {
 			return console.log(err);
@@ -18,7 +19,8 @@ exports.getAllRestaurants = function(req, res){
 // GET A SPECIFIC RESTAURANT BY ID
 //
 exports.getRestaurantById = function(req, res){
-	return res.status(501).send("not implemented");
+	res.header('Access-Control-Allow-Origin', "*");
+	return res.jsonp([]);
 };
 
 //
