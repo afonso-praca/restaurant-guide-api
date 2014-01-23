@@ -28,6 +28,7 @@ exports.getRestaurantById = function(req, res){
 //
 exports.newRestaurant = function (req, res){
 	var restaurant = new Restaurant(req.body);
+	console.log(req.files);
 	restaurant.save(function (err) {
 		if (!err) {
 			console.log("created");
