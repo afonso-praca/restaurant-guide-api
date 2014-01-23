@@ -13,7 +13,11 @@ app.use(express.compress());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.cookieParser());
-app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + '/files' }));
+app.use(express.bodyParser({
+	keepExtensions: true,
+	uploadDir: __dirname + '/files'
+}));
+app.use(express.limit('5mb'));
 app.use(express.session({ secret: 'SECRET' }));
 app.use(passport.initialize());
 app.use(passport.session());
