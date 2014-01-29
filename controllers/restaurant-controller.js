@@ -35,13 +35,13 @@ exports.getRestaurantById = function(req, res){
 // CREATES A RESTAURANT
 //
 exports.newRestaurant = function (req, res){
+	console.log(req);
 	var restaurant = new Restaurant(req.body);
 	console.log(req.files);
 	restaurant.save(function (err) {
 		if (!err) {
 			console.log("created");
 			self.uploadToAWS(req, res, restaurant);
-			return false;
 		} else {
 			console.log(err);
 			return res.send("error");
@@ -61,8 +61,7 @@ self.uploadToAWS = function(req, res, restaurant){
 			console.log("Successfully uploaded data to " + bucketName);
 			return res.status(201).jsonp(restaurant);
 		} else {
-			console.log(err);
-			return false;
+			return res.send("error " + err);
 		}
 	});
 };
