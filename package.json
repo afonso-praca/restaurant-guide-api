@@ -19,6 +19,7 @@
     "passport-facebook": "latest",
     "glob": "latest",
     "forever": "~0.10.11"
+    "aws-sdk": "~2.0.0-rc8"
   },
   "devDependencies": {
     "grunt": "latest",
@@ -26,5 +27,9 @@
     "grunt-contrib-watch": "latest",
     "grunt-concurrent": "latest",
     "grunt-nodemon": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:afonso-praca/restaurant-guide-api.git"
   }
 }
