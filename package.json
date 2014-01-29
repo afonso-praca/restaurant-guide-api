@@ -1,1 +1,30 @@
-{	"name": "restaurant-guide-api",	"version": "0.0.1",	"private": false,	"author": "Afonso Praça",	"engines": {		"node": "0.10.x",		"npm": "1.2.x"	},	"scripts": {		"start": "node app.js"	},	"dependencies": {		"grunt": "latest",		"express": "latest",		"underscore": "latest",		"mongoose": "latest",		"passport": "latest",		"passport-facebook": "latest",		"glob": "latest"	},	"devDependencies": {		"grunt": "latest",		"grunt-contrib-coffee": "latest",		"grunt-contrib-watch": "latest",		"grunt-concurrent": "latest",		"grunt-nodemon": "latest"	}}
+{
+  "name": "restaurant-guide-api",
+  "version": "0.0.1",
+  "private": false,
+  "author": "Afonso Praça",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "grunt": "latest",
+    "express": "latest",
+    "underscore": "latest",
+    "mongoose": "latest",
+    "passport": "latest",
+    "passport-facebook": "latest",
+    "glob": "latest",
+    "forever": "~0.10.11"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-concurrent": "latest",
+    "grunt-nodemon": "latest"
+  }
+}
