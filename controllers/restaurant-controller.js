@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Restaurant = mongoose.model("Restaurant");
 var AWS = require('aws-sdk');
-// AWS.config.update({accessKeyId: '...', secretAccessKey: '...'});
+var uuid = require('node-uuid');
 
 // Create an S3 client
 var s3 = new AWS.S3();
@@ -52,7 +52,7 @@ exports.newRestaurant = function (req, res){
 self.uploadToAWS = function(req, res, restaurant){
 	var params = {
 		Bucket: bucketName,
-		Key: "hello-world22.txt",
+		Key: String(uuid.v4()) + ".txt",
 		Body: 'Hello World!',
 		ACL:'public-read'
 	};

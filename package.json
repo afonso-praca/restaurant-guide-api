@@ -19,7 +19,8 @@
     "passport-facebook": "latest",
     "glob": "latest",
     "forever": "~0.10.11",
-    "aws-sdk": "~2.0.0-rc8"
+    "aws-sdk": "~2.0.0-rc8",
+	  "node-uuid": ">= 1.4.1"
   },
   "devDependencies": {
     "grunt": "latest",
