@@ -1,5 +1,11 @@
 var mongoose = require("mongoose");
 var Restaurant = mongoose.model("Restaurant");
+var AWS = require('aws-sdk');
+AWS.config.update({accessKeyId: 'AKIAIPJOG4GGLEMNQNFQ', secretAccessKey: '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'});
+
+// Create an S3 client
+var s3 = new AWS.S3();
+var bucketName = 'restaurant-guide';
 
 //
 // GET LIST OF RESTAURANTS
@@ -31,8 +37,16 @@ exports.newRestaurant = function (req, res){
 	console.log(req.files);
 	restaurant.save(function (err) {
 		if (!err) {
-			console.log("created");
-			return res.status(201).jsonp(restaurant);
+			var params = {Bucket: bucketName, Key: "hello-world.txt", Body: 'Hello World!'};
+			s3.putObject(params, function(err, data) {
+				if (err){
+					console.log(err);
+				} else {
+					console.log("Successfully uploaded data to " + bucketName);
+					console.log("created");
+					return res.status(201).jsonp(restaurant);
+				}
+			});
 		} else {
 			console.log(err);
 			return res.send("error");
