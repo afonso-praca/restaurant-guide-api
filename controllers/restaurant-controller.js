@@ -7,6 +7,8 @@ var AWS = require('aws-sdk');
 var s3 = new AWS.S3();
 var bucketName = 'restaurant-guide';
 
+var self = this;
+
 //
 // GET LIST OF RESTAURANTS
 //
@@ -37,19 +39,30 @@ exports.newRestaurant = function (req, res){
 	console.log(req.files);
 	restaurant.save(function (err) {
 		if (!err) {
-			var params = {Bucket: bucketName, Key: "hello-world.txt", Body: 'Hello World!'};
-			s3.putObject(params, function(err, data) {
-				if (err){
-					console.log(err);
-				} else {
-					console.log("Successfully uploaded data to " + bucketName);
-					console.log("created");
-					return res.status(201).jsonp(restaurant);
-				}
-			});
+			console.log("created");
+			self.uploadToAWS(req, res, restaurant);
+			return false;
 		} else {
 			console.log(err);
 			return res.send("error");
+		}
+	});
+};
+
+self.uploadToAWS = function(req, res, restaurant){
+	var params = {
+		Bucket: bucketName,
+		Key: "hello-world22.txt",
+		Body: 'Hello World!',
+		ACL:'public-read'
+	};
+	s3.putObject(params, function(err, data) {
+		if (!err) {
+			console.log("Successfully uploaded data to " + bucketName);
+			return res.status(201).jsonp(restaurant);
+		} else {
+			console.log(err);
+			return false;
 		}
 	});
 };
