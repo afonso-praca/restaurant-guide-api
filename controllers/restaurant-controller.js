@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var Restaurant = mongoose.model("Restaurant");
 var AWS = require('aws-sdk');
-AWS.config.update({accessKeyId: 'AKIAIPJOG4GGLEMNQNFQ', secretAccessKey: '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'});
+// AWS.config.update({accessKeyId: '...', secretAccessKey: '...'});
 
 // Create an S3 client
 var s3 = new AWS.S3();
