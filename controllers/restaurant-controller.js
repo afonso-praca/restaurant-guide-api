@@ -57,7 +57,7 @@ exports.newRestaurant = function (req, res){
 			});
 		});
 	} else {
-
+		self.createRestaurant(req, res, null);
 	}
 };
 
