@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var Restaurant = mongoose.model("Restaurant");
 var AWS = require('aws-sdk');
 var uuid = require('node-uuid');
+var fs = require('fs');
 
 // Create an S3 client
 var s3 = new AWS.S3();
@@ -35,16 +36,20 @@ exports.getRestaurantById = function(req, res){
 // CREATES A RESTAURANT
 //
 exports.newRestaurant = function (req, res){
-	console.log(req);
+
 	var restaurant = new Restaurant(req.body);
-	console.log(req.files);
+	var tempPath = req.files.file.path
+
+	console.log(restaurant);
+	console.log(tempPath);
+
 	restaurant.save(function (err) {
 		if (!err) {
 			console.log("created");
 			self.uploadToAWS(req, res, restaurant);
 		} else {
 			console.log(err);
-			return res.send("error");
+			return res.send("error on creating the restaurant");
 		}
 	});
 };
@@ -61,7 +66,7 @@ self.uploadToAWS = function(req, res, restaurant){
 			console.log("Successfully uploaded data to " + bucketName);
 			return res.status(201).jsonp(restaurant);
 		} else {
-			return res.send("error " + err);
+			return res.send("restaurant created but was an error - " + err);
 		}
 	});
 };
