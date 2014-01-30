@@ -36,8 +36,8 @@ exports.getRestaurantById = function(req, res){
 // CREATES A RESTAURANT
 //
 exports.newRestaurant = function (req, res){
-	var tempPath = req.files.image.path;
-	if (tempPath){
+	if (req.files.image){
+		var tempPath = req.files.image.path;
 		var newImageName = String(uuid.v4()) + ".jpg";
 		fs.readFile(tempPath, function (err, data){
 			if (err) { throw err; }
