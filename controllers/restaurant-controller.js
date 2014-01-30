@@ -36,41 +36,43 @@ exports.getRestaurantById = function(req, res){
 // CREATES A RESTAURANT
 //
 exports.newRestaurant = function (req, res){
+	var tempPath = req.files.image.path;
+	if (tempPath){
+		var newImageName = String(uuid.v4()) + ".jpg";
+		fs.readFile(tempPath, function (err, data){
+			if (err) { throw err; }
+			var params = {
+				Bucket: bucketName,
+				Key: newImageName,
+				Body: data,
+				ACL:'public-read'
+			};
+			s3.putObject(params,function(err, data){
+				if (!err) {
+					console.log("Successfully uploaded data to " + bucketName);
+					self.createRestaurant(req, res, newImageName);
+				} else {
+					self.createRestaurant(req, res, null);
+				}
+			});
+		});
+	} else {
 
+	}
+};
+
+self.createRestaurant = function(req, res, newImageName){
 	var restaurant = new Restaurant(req.body);
-	var tempPath = req.files.file.path
-
-	console.log(restaurant);
-	console.log(tempPath);
-
+	if (newImageName !== null)
+		restaurant.image = "http://s3-us-west-2.amazonaws.com/restaurant-guide/" + newImageName;
 	restaurant.save(function (err) {
 		if (!err) {
 			console.log("created");
-			self.uploadToAWS(req, res, restaurant, tempPath);
+			return res.status(201).jsonp(restaurant);
 		} else {
 			console.log(err);
 			return res.send("error on creating the restaurant");
 		}
-	});
-};
-
-self.uploadToAWS = function(req, res, restaurant, tempPath){
-	fs.readFile(tempPath, function (err, data){
-		if (err) { throw err; }
-		var params = {
-			Bucket: bucketName,
-			Key: String(uuid.v4()) + ".jpg",
-			Body: data,
-			ACL:'public-read'
-		};
-		s3.putObject(params, function(err, data) {
-			if (!err) {
-				console.log("Successfully uploaded data to " + bucketName);
-				return res.status(201).jsonp(restaurant);
-			} else {
-				return res.send("restaurant created but was an error - " + err);
-			}
-		});
 	});
 };
 

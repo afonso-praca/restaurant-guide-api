@@ -18,6 +18,11 @@ var RestaurantSchema = new Schema({
 		required: false,
 		trim: true
 	},
+	image: {
+		type: String,
+		required: false,
+		trim: true
+	},
 	modified: {
 		type: Date,
 		default: Date.now
