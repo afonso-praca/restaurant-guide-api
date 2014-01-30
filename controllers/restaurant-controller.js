@@ -46,7 +46,7 @@ exports.newRestaurant = function (req, res){
 	restaurant.save(function (err) {
 		if (!err) {
 			console.log("created");
-			self.uploadToAWS(req, res, restaurant);
+			self.uploadToAWS(req, res, restaurant, tempPath);
 		} else {
 			console.log(err);
 			return res.send("error on creating the restaurant");
@@ -54,20 +54,23 @@ exports.newRestaurant = function (req, res){
 	});
 };
 
-self.uploadToAWS = function(req, res, restaurant){
-	var params = {
-		Bucket: bucketName,
-		Key: String(uuid.v4()) + ".txt",
-		Body: 'Hello World!',
-		ACL:'public-read'
-	};
-	s3.putObject(params, function(err, data) {
-		if (!err) {
-			console.log("Successfully uploaded data to " + bucketName);
-			return res.status(201).jsonp(restaurant);
-		} else {
-			return res.send("restaurant created but was an error - " + err);
-		}
+self.uploadToAWS = function(req, res, restaurant, tempPath){
+	fs.readFile(tempPath, function (err, data){
+		if (err) { throw err; }
+		var params = {
+			Bucket: bucketName,
+			Key: String(uuid.v4()) + ".jpg",
+			Body: data,
+			ACL:'public-read'
+		};
+		s3.putObject(params, function(err, data) {
+			if (!err) {
+				console.log("Successfully uploaded data to " + bucketName);
+				return res.status(201).jsonp(restaurant);
+			} else {
+				return res.send("restaurant created but was an error - " + err);
+			}
+		});
 	});
 };
 
