@@ -53,6 +53,7 @@ exports.newRestaurant = function (req, res){
 					console.log("Successfully uploaded data to " + bucketName);
 					self.createRestaurant(req, res, newImageName);
 				} else {
+					console.log(err);
 					self.createRestaurant(req, res, null);
 				}
 			});
