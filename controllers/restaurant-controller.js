@@ -31,7 +31,7 @@ exports.getRestaurantById = function(req, res){
 	res.header('Access-Control-Allow-Origin', "*");
 	return Restaurant.find({ _id: req.params.id }, function (err, restaurants){
 		if (!err) {
-			return res.jsonp(restaurants);
+			return res.jsonp(restaurants[0]);
 		} else {
 			console.log(err);
 			return res.send("no restaurant found");
