@@ -29,7 +29,14 @@ exports.getAllRestaurants = function(req, res){
 //
 exports.getRestaurantById = function(req, res){
 	res.header('Access-Control-Allow-Origin', "*");
-	return res.jsonp([]);
+	return Restaurant.find({ _id: req.params.id }, function (err, restaurants){
+		if (!err) {
+			return res.jsonp(restaurants);
+		} else {
+			console.log(err);
+			return res.send("no restaurant found");
+		}
+	});
 };
 
 //
@@ -103,7 +110,7 @@ exports.deleteRestaurant = function (req, res){
 			});
 		} else {
 			console.log(err);
-			return res.send("don't fucking have this restaurant");
+			return res.send("no restaurant found");
 		}
 	});
 };
