@@ -3,6 +3,7 @@ var Restaurant = mongoose.model("Restaurant");
 var AWS = require('aws-sdk');
 var uuid = require('node-uuid');
 var fs = require('fs');
+var _ = require("underscore");
 
 // Create an S3 client
 var s3 = new AWS.S3();
@@ -17,7 +18,7 @@ exports.getAllRestaurants = function(req, res){
 	return Restaurant.find(function (err, restaurants){
 		if (!err) {
 			res.header('Access-Control-Allow-Origin', "*");
-			return res.jsonp(restaurants);
+			return res.jsonp(_.shuffle(restaurants));
 		} else {
 			return console.log(err);
 		}
