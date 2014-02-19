@@ -13,6 +13,8 @@
   "dependencies": {
     "grunt": "latest",
     "express": "latest",
+	  "express-validator": "~1.0.1",
+	  "nodemailer": "~0.6.0",
     "underscore": "latest",
     "mongoose": "latest",
     "passport": "latest",
@@ -20,7 +22,10 @@
     "glob": "latest",
     "forever": "~0.10.11",
     "aws-sdk": "~2.0.0-rc8",
-	  "node-uuid": ">= 1.4.1"
+	  "node-uuid": ">= 1.4.1",
+	  "connect-mongo": "~0.4.0",
+	  "validator": "~3.2.1",
+	  "crypto": "0.0.3"
   },
   "devDependencies": {
     "grunt": "latest",

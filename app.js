@@ -28,7 +28,7 @@ app.use(passport.session());
 var db = mongoose.connect('mongodb://localhost/restaurant-guide');
 
 // Bootstrap models and routes
-require("./models/restaurant-model");
+require("./models/Restaurant");
 require('./routes')(app, passport);
 
 app.listen(3000, function(){

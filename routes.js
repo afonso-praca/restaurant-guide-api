@@ -1,6 +1,6 @@
 module.exports = function(app, passport){
 	/**
-	 * Controllers.
+	 * Load controllers.
 	 */
 	var restaurants = require('./controllers/restaurant-controller');
 	var domain = require('domain');
