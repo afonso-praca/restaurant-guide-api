@@ -18,9 +18,13 @@ app.use(express.bodyParser({
 	uploadDir: __dirname + '/files'
 }));
 app.use(express.limit('5mb'));
-app.use(express.session({ secret: 'SECRET' }));
+app.use(express.session({
+	secret: 'SECRET',
+	key: "sessionId"
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.disable("x-powered-by");
 
 /**
  * Start DB.
