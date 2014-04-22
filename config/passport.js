@@ -17,7 +17,7 @@ module.exports = function (passport, facebookAppId, facebookAppSecret) {
 	passport.use(new FacebookStrategy({
 		clientID: facebookAppId,
 		clientSecret: facebookAppSecret,
-		callbackURL: 'http://penedorj.com.br/auth/facebook/callback'
+		callbackURL: 'http://api.penedorj.com.br/auth/facebook/callback'
 	}, function(accessToken, refreshToken, profile, done) {
 		User.findOne({ 'facebook.id': profile.id }, function (err, user) {
 			if (err) { return done(err); }
