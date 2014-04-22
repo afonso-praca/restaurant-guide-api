@@ -7,7 +7,8 @@ var UserSchema = new Schema({
 	user_image: String,
 	facebook_id: String,
 	facebook: { },
-	createdAt: { type: Date, 'default': Date.now }
+	createdAt: { type: Date, 'default': Date.now },
+	provider: String
 });
 
 module.exports = mongoose.model('User', UserSchema);
