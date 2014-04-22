@@ -5,6 +5,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
+var root = path.normalize(__dirname + '/..');
+
 /**
  * Start and config app.
  */
@@ -25,6 +27,9 @@ app.use(express.session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.disable("x-powered-by");
+
+app.set('views', root + '/views');
+app.set('view engine', 'ejs');
 
 /**
  * Start DB.

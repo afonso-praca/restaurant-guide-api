@@ -28,7 +28,6 @@ module.exports = function (passport, facebookAppId, facebookAppSecret) {
 				user = new User({
 					name: profile.displayName,
 					email: profile.emails[0].value,
-					username: profile.username,
 					user_image: profile.photos[0].value,
 					facebook_id: profile.id,
 					facebook: profile._json
