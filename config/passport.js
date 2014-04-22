@@ -19,6 +19,7 @@ module.exports = function (passport, facebookAppId, facebookAppSecret) {
 		clientSecret: facebookAppSecret,
 		callbackURL: 'http://api.penedorj.com.br/auth/facebook/callback'
 	}, function(accessToken, refreshToken, profile, done) {
+		console.log(profile);
 		User.findOne({ 'facebook.id': profile.id }, function (err, user) {
 			if (err) { return done(err); }
 			if (!user) {
