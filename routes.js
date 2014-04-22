@@ -15,7 +15,7 @@ module.exports = function(app, passport){
 	 */
 	d.run(function() {
 
-		app.get('/auth/facebook', passport.authenticate('facebook',  { scope: ['email','user_birthday', 'id', 'displayName', 'username', 'link', 'photos'] }));
+		app.get('/auth/facebook', passport.authenticate('facebook'));
 		app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: 'http://api.penedorj.com.br/auth/success', failureRedirect: 'http://api.penedorj.com.br/auth/failure' }));
 		app.get('/auth/success', function(req, res) {
 			res.send(req.user);
