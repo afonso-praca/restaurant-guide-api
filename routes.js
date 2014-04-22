@@ -16,7 +16,7 @@ module.exports = function(app, passport){
 	d.run(function() {
 
 		app.get('/auth/facebook', passport.authenticate('facebook'));
-		app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/auth/success', failureRedirect: '/auth/failure' }));
+		app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: 'http://penedorj.com.br/', failureRedirect: 'http://penedorj.com.br/' }));
 		app.get('/auth/success', function(req, res) {
 			res.render(req.user);
 		});
