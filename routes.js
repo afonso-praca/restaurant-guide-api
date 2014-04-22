@@ -25,6 +25,11 @@ module.exports = function(app, passport){
 		app.get('/api/auth/failure', function(req, res) {
 			res.send('fail');
 		});
+		app.delete('/api/auth', function(req, res) {
+			req.logout();
+			res.writeHead(200);
+			res.end();
+		});
 
 		app.get('/api/restaurants', restaurants.getAllRestaurants);
 		app.post('/api/restaurants', restaurants.newRestaurant);
