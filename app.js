@@ -4,6 +4,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var expressValidator = require('express-validator');
 
 /**
  * Start and config app.
@@ -30,6 +31,11 @@ app.disable("x-powered-by");
  * Start DB.
  */
 var db = mongoose.connect('mongodb://localhost/restaurant-guide');
+
+//
+// PASSPORT
+//
+require('./config/passport')(passport, "606767286070551", "5b80d62592514165eeda0d057f8a2bb0");
 
 // Bootstrap models and routes
 require("./models/Restaurant");

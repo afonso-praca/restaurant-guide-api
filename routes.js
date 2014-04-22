@@ -14,10 +14,11 @@ module.exports = function(app, passport){
 	 * Restaurants routes.
 	 */
 	d.run(function() {
-		app.get('/api/pvt/restaurants', restaurants.getAllRestaurants);
-		app.post('/api/pvt/restaurants', restaurants.newRestaurant);
-		app.get('/api/pvt/restaurants/:id', restaurants.getRestaurantById);
-		app.put('/api/pvt/restaurants/:id', restaurants.updateRestaurant);
-		app.delete('/api/pvt/restaurants/:id', restaurants.deleteRestaurant);
+		app.get('/auth/facebook', passport.authenticate('facebook'));
+		app.get('/restaurants', restaurants.getAllRestaurants);
+		app.post('/restaurants', restaurants.newRestaurant);
+		app.get('/restaurants/:id', restaurants.getRestaurantById);
+		app.put('/restaurants/:id', restaurants.updateRestaurant);
+		app.delete('/restaurants/:id', restaurants.deleteRestaurant);
 	});
 };
