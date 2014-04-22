@@ -15,21 +15,21 @@ module.exports = function(app, passport){
 	 */
 	d.run(function() {
 
-		app.get('/auth/facebook', passport.authenticate('facebook', {
+		app.get('/api/auth/facebook', passport.authenticate('facebook', {
 			scope : [ "email", "basic_info" ]
 		}));
-		app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: 'http://api.penedorj.com.br/auth/success', failureRedirect: 'http://api.penedorj.com.br/auth/failure' }));
-		app.get('/auth/success', function(req, res) {
+		app.get('/api/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: 'http://penedorj.com.br/api/auth/success', failureRedirect: 'http://penedorj.com.br/api/auth/failure' }));
+		app.get('/api/auth/success', function(req, res) {
 			res.render('after-auth', { state: 'success', user: req.user ? req.user : null });
 		});
-		app.get('/auth/failure', function(req, res) {
+		app.get('/api/auth/failure', function(req, res) {
 			res.send('fail');
 		});
 
-		app.get('/restaurants', restaurants.getAllRestaurants);
-		app.post('/restaurants', restaurants.newRestaurant);
-		app.get('/restaurants/:id', restaurants.getRestaurantById);
-		app.put('/restaurants/:id', restaurants.updateRestaurant);
-		app.delete('/restaurants/:id', restaurants.deleteRestaurant);
+		app.get('/api/restaurants', restaurants.getAllRestaurants);
+		app.post('/api/restaurants', restaurants.newRestaurant);
+		app.get('/api/restaurants/:id', restaurants.getRestaurantById);
+		app.put('/api/restaurants/:id', restaurants.updateRestaurant);
+		app.delete('/api/restaurants/:id', restaurants.deleteRestaurant);
 	});
 };
