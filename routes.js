@@ -14,7 +14,16 @@ module.exports = function(app, passport){
 	 * Restaurants routes.
 	 */
 	d.run(function() {
+
 		app.get('/auth/facebook', passport.authenticate('facebook'));
+		app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/auth/success', failureRedirect: '/auth/failure' }));
+		app.get('/auth/success', function(req, res) {
+			res.render(req.user);
+		});
+		app.get('/auth/failure', function(req, res) {
+			res.render('fail');
+		});
+
 		app.get('/restaurants', restaurants.getAllRestaurants);
 		app.post('/restaurants', restaurants.newRestaurant);
 		app.get('/restaurants/:id', restaurants.getRestaurantById);
