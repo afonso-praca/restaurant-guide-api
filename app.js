@@ -29,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.disable("x-powered-by");
 
-app.set('views', root + 'restaurant-guide-api/views');
+app.set('views', root + '/restaurant-guide-api/views');
 app.set('view engine', 'ejs');
 
 /**
