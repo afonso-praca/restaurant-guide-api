@@ -4,6 +4,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var path = require('path');
 
 var root = path.normalize(__dirname + '/..');
 
