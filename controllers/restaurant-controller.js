@@ -32,7 +32,13 @@ exports.getRestaurantById = function(req, res){
 	res.header('Access-Control-Allow-Origin', "*");
 	return Restaurant.find({ _id: req.params.id }, function (err, restaurants){
 		if (!err && restaurants) {
-			return res.jsonp(restaurants[0]);
+			var rest = new Restaurant(restaurants[0]);
+			rest.findSimilarExpertises(function(err, similars){
+				return res.jsonp({
+					restaurant: restaurants[0],
+					similars: _.filter(similars, function(item){ return item._id != restaurants[0].id; })
+				});
+			});
 		} else {
 			console.log(err);
 			return res.send("no restaurant found");

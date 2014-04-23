@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var _ = require("underscore");
 
 var RestaurantSchema = new Schema({
 	name: {
@@ -32,7 +33,31 @@ var RestaurantSchema = new Schema({
 		type: String,
 		required: false,
 		trim: true
-	}
+	},
+	comments: [
+		{
+			body: {
+				type: String,
+				required: true,
+				trim: true
+			},
+			date: Date,
+			author: {
+				type: String,
+				required: true,
+				trim: true
+			}
+		}
+	]
 });
 
-mongoose.model("Restaurant", RestaurantSchema);
+// assign a function to the "methods" object of our animalSchema
+RestaurantSchema.methods.findSimilarExpertises = function (cb) {
+	return this.model('Restaurant').find({ expertise: this.expertise }, cb);
+};
+
+RestaurantSchema.methods.addComment = function (comment) {
+
+};
+
+var Restaurant = mongoose.model("Restaurant", RestaurantSchema);
