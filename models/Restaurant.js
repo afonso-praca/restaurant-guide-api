@@ -36,13 +36,13 @@ var RestaurantSchema = new Schema({
 	},
 	comments: [
 		{
-			body: {
+			comment: {
 				type: String,
 				required: true,
 				trim: true
 			},
-			date: Date,
-			author: {
+			stars: String,
+			user: {
 				type: String,
 				required: true,
 				trim: true

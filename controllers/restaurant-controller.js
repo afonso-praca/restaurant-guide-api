@@ -92,6 +92,22 @@ self.createRestaurant = function(req, res, newImageName){
 	});
 };
 
+exports.newComment = function(req, res){
+	console.log(req.body);
+	var comment = req.body;
+	res.send("comment created");
+	Restaurant.findOne({ _id: comment.restaurant_id }, function (err, restaurant) {
+		if (err){
+
+		}
+		// add a rating
+		restaurant.comments.push({ stars: comment.stars, comment: comment.comment, user: comment.user });
+		restaurant.save(function(err, comment){
+			console.log(comment);
+		});
+	});
+};
+
 //
 // UPDATES A RESTAURANT
 //

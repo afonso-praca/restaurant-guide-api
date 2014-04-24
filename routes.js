@@ -33,6 +33,7 @@ module.exports = function(app, passport){
 
 		app.get('/api/restaurants', restaurants.getAllRestaurants);
 		app.post('/api/restaurants', restaurants.newRestaurant);
+		app.post('/api/restaurants/comments', restaurants.newComment);
 		app.get('/api/restaurants/:id', restaurants.getRestaurantById);
 		app.put('/api/restaurants/:id', restaurants.updateRestaurant);
 		app.delete('/api/restaurants/:id', restaurants.deleteRestaurant);
