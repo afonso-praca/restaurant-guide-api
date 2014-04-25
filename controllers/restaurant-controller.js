@@ -100,8 +100,16 @@ exports.newComment = function(req, res){
 		if (err){
 
 		}
+		console.log(restaurant);
 		// add a rating
-		restaurant.comments.push({ stars: comment.stars, comment: comment.comment, user: comment.user });
+		restaurant.comments.unshift({
+			stars: comment.stars,
+			body: comment.body,
+			title: comment.title,
+			date: new Date(),
+			user_id: comment.user_id
+		});
+		//restaurant.comments = [];
 		restaurant.save(function(err, comment){
 			console.log(comment);
 		});
