@@ -102,16 +102,16 @@ exports.newComment = function(req, res){
 		}
 		console.log(restaurant);
 		// add a rating
-//		restaurant.comments.unshift({
-//			stars: comment.stars,
-//			body: comment.body,
-//			title: comment.title,
-//			date: new Date(),
-//			user_id: comment.user_id,
-//			user_image: comment.user_image,
-//			user_name: comment.user_name
-//		});
-		restaurant.comments = [];
+		restaurant.comments.unshift({
+			stars: comment.stars,
+			body: comment.body,
+			title: comment.title,
+			date: new Date(),
+			user_id: comment.user_id,
+			user_image: comment.user_image,
+			user_name: comment.user_name
+		});
+		//restaurant.comments = [];
 		restaurant.save(function(err, comment){
 			if (err){
 				res.send("error on creating comment");
