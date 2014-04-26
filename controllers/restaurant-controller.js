@@ -95,23 +95,29 @@ self.createRestaurant = function(req, res, newImageName){
 exports.newComment = function(req, res){
 	console.log(req.body);
 	var comment = req.body;
-	res.send("comment created");
+
 	Restaurant.findOne({ _id: comment.restaurant_id }, function (err, restaurant) {
 		if (err){
-
+			res.send("error on finding restaurant");
 		}
 		console.log(restaurant);
 		// add a rating
-		restaurant.comments.unshift({
-			stars: comment.stars,
-			body: comment.body,
-			title: comment.title,
-			date: new Date(),
-			user_id: comment.user_id
-		});
-		//restaurant.comments = [];
+//		restaurant.comments.unshift({
+//			stars: comment.stars,
+//			body: comment.body,
+//			title: comment.title,
+//			date: new Date(),
+//			user_id: comment.user_id,
+//			user_image: comment.user_image,
+//			user_name: comment.user_name
+//		});
+		restaurant.comments = [];
 		restaurant.save(function(err, comment){
+			if (err){
+				res.send("error on creating comment");
+			}
 			console.log(comment);
+			res.send(restaurant);
 		});
 	});
 };

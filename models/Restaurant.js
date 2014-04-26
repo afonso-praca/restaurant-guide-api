@@ -52,6 +52,16 @@ var RestaurantSchema = new Schema({
 				required: true,
 				trim: true
 			},
+			user_name: {
+				type: String,
+				required: true,
+				trim: true
+			},
+			user_image: {
+				type: String,
+				required: true,
+				trim: true
+			},
 			date: Date
 		}
 	]
@@ -60,10 +70,6 @@ var RestaurantSchema = new Schema({
 // assign a function to the "methods" object of our animalSchema
 RestaurantSchema.methods.findSimilarExpertises = function (cb) {
 	return this.model('Restaurant').find({ expertise: this.expertise }, cb);
-};
-
-RestaurantSchema.methods.addComment = function (comment) {
-
 };
 
 var Restaurant = mongoose.model("Restaurant", RestaurantSchema);
